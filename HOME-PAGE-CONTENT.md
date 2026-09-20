@@ -1,269 +1,479 @@
 # Suraxil — Home Page Content
 
-**Positioning:** Suraxil **delivers trusted chemical products** to industries, hospitals, businesses and individual customers. The products are made by manufacturers with 20+ years of experience — that experience is stated as backing for the range, not as a disclaimer about what Suraxil is.
+**Positioning:** Suraxil is a specialty chemicals partner for industrial, commercial and institutional applications — water treatment, wastewater treatment, specialty maintenance, housekeeping, fragrance and customized chemical requirements. The page is organized around *applications* (what the customer is trying to solve) rather than a product catalog.
 
-**Voice rule:** Suraxil is the one who delivers. Write in the active first person — *we deliver, we confirm, we handle*. Do not hedge the company into a go-between ("we are not the factory", "we connect you with suppliers", "we source rather than manufacture"). Equally, never claim Suraxil manufactures, formulates or produces: the manufacturing experience belongs to the manufacturers behind the range.
+**Source:** This content is ported from the client-supplied page mockup (`Suraxil single page website mockup.pdf`). It **replaces** the previous "trusted chemical products, delivered" / reseller-positioning content that lived in this file before.
 
-> **Porting note:** this content is live in `assets/index-BN5FljXk.js` (a production bundle — there is no React source in this repo). If the real source lives elsewhere, use this document to port the copy back, otherwise the next build will overwrite it.
+> **Porting note:** this content is live in `assets/index-BN5FljXk.js` (a production bundle — there is no React source in this repo). This document is the source of truth for the copy; `index.html`'s `<head>` tags have already been updated to match the SEO section below. The rest of this content still needs to be ported into the actual page source (wherever that lives) — the next build of the bundle will otherwise overwrite it.
 
 ---
 
-## SEO
+## SEO Foundation
 
-**Title** (46 chars)
+**SEO Title** — live in [index.html](index.html)
 ```
-Suraxil | Trusted Chemical Products, Delivered
-```
-
-**Meta description** (154 chars)
-```
-Suraxil delivers trusted chemical products to industries, hospitals, businesses and individual customers, backed by 20+ years of manufacturing experience.
+Specialty Chemicals & Water Treatment | Suraxil
 ```
 
-Both are live in [index.html](index.html), along with matching Open Graph and Twitter card tags. `og:url` and a canonical tag were deliberately left out — add them once the production domain is confirmed.
+**Meta description** — live in [index.html](index.html), and mirrored in `og:description` / `twitter:description`
+```
+Suraxil offers specialty chemicals, water treatment, wastewater treatment, industrial cleaning and custom chemical solutions for businesses across India.
+```
+
+A `meta name="keywords"` tag (below) was also added to `index.html` carrying the full primary + secondary list, since it was supplied explicitly in the mockup. `og:url` and a canonical tag are still deliberately left out, as before — add them once the production domain is confirmed.
+
+**Primary keywords**
+- specialty chemicals
+- industrial chemicals
+- industrial chemical solutions
+- water treatment chemicals
+- wastewater treatment chemicals
+
+**Secondary keywords**
+- cooling tower chemicals
+- boiler water treatment chemicals
+- chiller water treatment chemicals
+- RO water treatment chemicals
+- HVAC cleaning chemicals
+- industrial cleaning chemicals
+- ETP chemicals
+- industrial wastewater treatment chemicals
+- STP chemicals
+- industrial maintenance chemicals
+- descaling chemicals
+- degreasing chemicals
+- housekeeping chemicals
+- custom chemical solutions
+
+**Keyword-to-section mapping** (so the primary/secondary terms land naturally in body copy, not just meta tags):
+
+| Keyword(s) | Section |
+|---|---|
+| specialty chemicals, industrial chemicals, industrial chemical solutions | Hero, footer brand blurb |
+| water treatment chemicals, cooling tower / boiler / chiller / RO water treatment chemicals, HVAC cleaning chemicals | §2 Water Treatment card, §8.1 detail page |
+| wastewater treatment chemicals, industrial wastewater treatment chemicals, ETP chemicals, STP chemicals | §2 Wastewater card, §8.2 detail page |
+| industrial cleaning chemicals, industrial maintenance chemicals, descaling chemicals, degreasing chemicals | §2 Specialty Maintenance card, §8.3 detail page |
+| housekeeping chemicals | §2 Housekeeping card, §8.4 detail page |
+| custom chemical solutions | §2 Custom Solutions card, §6 Suraxil Difference table, §8.7 detail page |
+
+✅ **Audited and confirmed live — all 19 keywords (5 primary + 14 secondary) now appear as exact phrases in the rendered page copy**, not just in the meta tags. This was checked programmatically (searched the built page output for each exact phrase, case-insensitive) rather than assumed from the mapping table above. Two gaps were found and fixed:
+
+- **"industrial chemical solutions"** (primary) wasn't used anywhere in body copy — added by rewriting the still-stale pre-mockup footer brand blurb (it previously read "Suraxil delivers trusted specialty maintenance, water treatment and industrial cleaning chemicals to industries, hospitals, businesses and individual customers across India.", left over from before this project started) to: *"Suraxil provides specialty chemicals and industrial chemical solutions for water treatment, wastewater treatment, industrial maintenance, housekeeping, fragrance and specialized applications across India."*
+- **10 of the 14 secondary keywords** were missing entirely: cooling tower / boiler water treatment / chiller water treatment / RO water treatment / HVAC cleaning chemicals, ETP chemicals, industrial wastewater treatment chemicals, STP chemicals, industrial maintenance chemicals, descaling chemicals, degreasing chemicals, housekeeping chemicals. Fixed by extending the intro paragraph of the matching What We Do tab panel (§2's tab view) for each — one natural sentence per panel, not scattered keyword-stuffing. E.g. the Water Treatment panel's intro now reads: *"...Suraxil provides treatment solutions across key industrial water systems, including cooling tower chemicals, boiler water treatment chemicals, chiller water treatment chemicals, RO water treatment chemicals and HVAC cleaning chemicals."* — the Wastewater, Specialty Maintenance and Housekeeping panels got equivalent additions for their respective missing terms.
+
+**Recommended H1**
+```
+Specialty Chemicals & Industrial Solutions for Better Performance
+```
+✅ **Resolved:** the client confirmed the mockup's hero headline (§1 below, "Chemical Solutions Built Around Your Industry.") as the actual `<h1>`. This SEO-recommended line is kept here only as a documented alternate, not for use.
+
+**Recommended URL structure**
+
+The site is currently a single-page app (`index.html` + one JS bundle, no router). The mockup's URL plan is written for a future multi-page build:
+
+```
+Homepage: /
+
+Future solution pages:
+/water-treatment-chemicals/
+/wastewater-treatment-chemicals/
+/industrial-maintenance-chemicals/
+/housekeeping-cleaning-chemicals/
+/fragrance-solutions/
+/custom-chemical-solutions/
+```
+
+Until those pages exist, mirror the same slugs as in-page anchor IDs (`#water-treatment-chemicals`, `#wastewater-treatment-chemicals`, etc.) on each detail section in §8, so the nav/footer links and future URL migration line up exactly.
 
 ---
 
 ## 1. Hero
 
-**Eyebrow:** Trusted chemical products, delivered
+**Eyebrow** *(small label above the H1, next to an icon — not specified in the mockup; using the brand tagline from §9 Footer for consistency)*
+> Specialty Chemicals & Industrial Solutions
 
-**Headline**
-> Trusted chemical products, delivered to industries, hospitals and businesses.
+**Headline (H1 — see SEO note above on the H1 conflict)**
+> Chemical Solutions Built Around Your Industry.
 
 **Subheadline**
-> Suraxil delivers a wide range of chemical products — specialty maintenance, water and waste water treatment, housekeeping and fragrances — backed by more than 20 years of manufacturing experience, to industrial plants, hospitals, businesses and individual customers.
+> Suraxil provides specialty chemicals and industrial solutions for water treatment, wastewater treatment, industrial maintenance, housekeeping, fragrance applications and customized requirements.
 
-**Primary CTA:** Request a quote → `#contact`
-**Secondary CTA:** Browse products → `#products`
+**Primary CTA:** Request a Quote
+**Secondary CTA:** Explore Solutions
 
-### Banner layout
+---
 
-The hero is a **full-viewport banner**: `min-height: calc(100svh - 110px)` (110px = the 34px utility bar + 76px nav row above it), so it fills the screen below the header with no gap and no overshoot.
+## 2. What We Do
 
-The copy runs **full page width, left-aligned**. The banner is the one section that ignores the 1160px `.shell` cap: `.hero-inner` overrides it with `max-width:none` and a fluid gutter of `clamp(24px, 4.5vw, 72px)`, so the text spans the viewport rather than a centred column. Nothing is capped — headline, sub, CTAs and stat strip all run the full width.
+**Label:** What We Do
+**Heading:** One Partner. Multiple Chemical Solutions.
+**Sub:** Suraxil brings together a broad range of chemical solutions designed for industrial, commercial and facility applications.
 
-The headline carries **no hard line breaks**; it flows as one sentence and wraps naturally to fill the width.
+Six solution cards, each pairing with an image, laid out in an alternating (checkerboard) two-column grid per the mockup:
 
-**Type scale** (all fluid, so no fixed breakpoints are needed):
-
-| Element | Size |
-|---|---|
-| Headline | `clamp(28px, 3.9vw, 54px)` |
-| Sub | `clamp(15px, 1.2vw, 18px)` |
-| Stat figure | `clamp(21px, 2.1vw, 26px)` |
-
-The stat tiles **pack left** with a `clamp(20px, 2.4vw, 38px)` gap rather than spreading edge to edge — at full page width `space-between` pushed `20+`, `5` and `4` so far apart they stopped reading as one strip. The rule above them still spans the full width.
-
-That `max-width:none` override works on source order, not specificity: `.shell` and `.hero-inner` are both single-class selectors, and `.hero-inner` is declared later in the stylesheet. **If the hero CSS is ever moved above the `.shell` rule, the banner will snap back to a 1160px column.**
-
-### Banner artwork
-
-The artwork is **one motif per product line**, arranged left to right along a shared ground line so the banner shows what Suraxil actually supplies rather than a generic factory:
-
-| Zone | Product line | Motif |
+| Card | Copy | CTA |
 |---|---|---|
-| x 258–372 | **Specialty maintenance** | HVAC coil block with fin lines, on legs, under a maintenance gear |
-| x 404–564 | **Water treatment** | Hyperboloid cooling tower with banding, a water droplet and spray above |
-| x 570–744 | **Waste water treatment** | Circular clarifier — basin, concentric weir rings, centre hub and radial bridge arm, with bubbles rising |
-| x 744–900 | **House keeping** | Trigger spray bottle with mist lines and a sparkle, plus a mop bucket |
+| **Water Treatment** | Chemical solutions for cooling towers, boilers, chillers, RO systems, HVAC systems and specialized water treatment applications. | Explore Water Treatment → |
+| **Wastewater Treatment** | Solutions for industrial effluent and wastewater treatment, including coagulation, flocculation, pH control, decolorization and sludge management. | Explore Wastewater → |
+| **Specialty Maintenance** | Industrial chemicals for cleaning, descaling, degreasing, equipment maintenance and process applications. | Explore Maintenance → |
+| **Housekeeping** | Professional cleaning solutions for floors, washrooms, surfaces, glass, kitchens and commercial facilities. | Explore Housekeeping → |
+| **Fragrance Solutions** | Fragrance solutions designed for hospitality, commercial spaces, offices, retail environments and institutions. | Explore Fragrance → |
+| **Custom Solutions** | Chemical solutions developed around specific application requirements, operating conditions and performance objectives. | Discuss Your Requirement → |
 
-A pipe run with valve wheels links the zones along the ground, and a single gradient sweep (`#2F5FFF` → `#17B8A6`) rises through the scene as the process flow, with a second, dimmer line running below ground as a header main. A benzene ring sits top-right as the chemistry signature.
+Each card CTA now opens its matching tab in-page (see below) rather than linking out to a separate detail page/anchor.
 
-The flow lines reuse the existing `.draw-path` draw-on animation and the node dots reuse `.drop`, so the banner animates in on load and still honours `prefers-reduced-motion`. It is bottom-anchored (`preserveAspectRatio="xMidYMax"`) so the equipment stands on the banner floor like a skyline.
+✅ **Live now**, inserted directly after the Hero and before the existing "Who we are" section, using the site's already-styled `overview-card` component (icon + title + blurb + arrow link — the same visual pattern used by the existing product-lines grid) so no new CSS was needed.
 
-The artwork is **centred** behind the centred copy (`left:50%` + `translateX(-50%)`) at `opacity:.34` on desktop and `.22` on mobile, so text reads over it rather than beside it. The scrim is a vertical gradient giving even coverage across the whole banner.
+### What We Do — detail tab view
 
-The viewBox is `206 0 694 640` — cropped on the left, because the empty band that used to clear left-aligned copy would otherwise make a centred backdrop look lopsided. The ground line and both flow sweeps deliberately start at `x=198`, outside the crop, so they bleed off-frame instead of starting in mid-air; every other element sits inside it. **If you widen the crop, extend those three lines to match.**
+Below the six summary cards, a tab strip + content panel was added directly inside this section (reusing the catalog's existing `tab-bar` / `tab-btn` / `tab-btn-active` styling, plus the `why-grid` / `why-card` styling for sub-application items and `badge` for the plain context lists — zero new CSS). Clicking a summary card's CTA sets the matching tab active and scrolls down to the panel; the tab strip itself is also directly clickable.
 
-It is drawn rather than photographed on purpose: no licensing question, ~5KB, sharp at any resolution, no extra network request, and it uses the brand palette directly. Changing a product line means editing shapes in one place, not re-sourcing a photo.
+| Tab | Panel heading | Sub-applications shown | Panel CTA |
+|---|---|---|---|
+| Water Treatment | Water Treatment Chemicals for Critical Systems | Cooling Tower Treatment, Boiler Water Treatment, Chiller Treatment, RO Water Treatment, HVAC Cleaning & Treatment, Specialized Water Treatment | Talk to a Water Treatment Specialist |
+| Wastewater Treatment | Wastewater Treatment Solutions for Industrial Applications | Coagulation, Flocculation, Decolorization, pH Control, Biological Treatment, Sludge Management, ETP & Industrial Effluent | Discuss Your Wastewater Requirement |
+| Specialty Maintenance | Keep Equipment Clean. Keep Operations Moving. | Descaling, Degreasing, Industrial Cleaning, Equipment Cleaning, Corrosion Management, Process Cleaning | Find a Maintenance Solution |
+| Housekeeping | Professional Cleaning Solutions for Every Facility | Floor Care, Washroom Care, Surface Cleaning, Glass Cleaning, Kitchen & Utility Cleaning, Facility Care — plus an Applications tag row (Hotels · Offices · Hospitals · Institutions · Commercial Buildings · Facilities) | Talk to a Specialist |
+| Fragrance Solutions | Make Every Space More Memorable. | No sub-cards (mockup has none) — rendered as a tag row: Hospitality, Offices, Retail environments, Commercial spaces, Institutions, Facility care | Explore Fragrance Solutions |
+| Custom Solutions | Beyond Products. Solutions for Industrial Challenges. | Water Treatment Projects, Wastewater & Effluent Projects, HVAC Cleaning, Water Optimization, Industrial Application Support (this is §8.6 "Projects", not §8.7 "Custom Chemical Solutions" — matches what the six card CTAs actually map to) | Discuss Your Project |
 
-**To use a photo as the background**, drop the file at `assets/hero-bg.jpg` and change one line in the stylesheet:
+This content is a direct, condensed port of §8.1–§8.4, §8.5 and §8.6 below (the detail sections' body copy is unchanged; only presentation differs — one shared tab view here vs. six separate long-form sections in §8). All six panel CTAs point to `#contact` (the existing Contact section) since there is no separate lead form per category yet.
 
-```css
---hero-image: none;                      /* current */
---hero-image: url('/assets/hero-bg.jpg'); /* with a photo */
+⚠️ **Page-structure note (live section order, keep this updated):**
+
+```
+1. Hero                      — ported (new)
+2. What We Do (+ tabs)       — ported (new)
+3. Industries                — ported (new) — moved above Why Suraxil to match §3/§4 order
+4. Why Suraxil (6 tiles)     — ported (new mockup 6)
+5. Our Approach               — ported (new) — didn't exist before
+6. The Suraxil Difference    — ported (new) — didn't exist before
+7. "Our chemical products" + catalog tabs — OLD content, not yet ported
+8. "How it works"            — OLD content, not yet ported
+9. Trust / Experience        — OLD content, not yet ported
+10. FAQ                       — ported (new) — didn't exist before, added directly above Contact
+11. Custom Chemical Solutions (§8.7) — ported (new) — didn't exist before, added between FAQ and Contact
+12. Contact                   — OLD content, not yet ported
 ```
 
-It is the **first** layer in a stacked `background-image`, so the navy gradient stays underneath as the base — the banner looks finished with or without a photo, and a missing file degrades to the gradient rather than breaking.
+**"Who we are" removed.** Per request, the old About section (id `about`) was taken out of the page composition entirely — it no longer renders. Its dead references were cleaned up too: the "About" link in the header nav (desktop + mobile) and the "About us" link in the footer's Company column, both of which pointed to `#about` and would otherwise have been broken anchors. The `function hp(){...}` code itself is still physically present in the bundle but is never called from anywhere — harmless dead code, not worth the extra risk of surgically deleting a large function body out of a minified file for no functional gain.
 
-A scrim (`.hero::after`) sits between the background and the text: a left-to-right dark fade on desktop, top-to-bottom on mobile. That is what keeps the headline readable over an arbitrary photo, so keep it if you swap the image. Pick a photo with a calm left-hand side, since that is where the text sits.
+Header nav also updated: "FAQ" link added (`#faq`), between "Industries" and "Contact", in both the desktop nav and mobile menu.
 
-Type scales fluidly (`clamp()`), so the headline fills the banner on large screens and stays readable on phones without fixed breakpoints.
-
-**Trust strip** — three outlined glass tiles, each with an icon badge in front:
-
-| Icon | Value | Label |
-|---|---|---|
-| BadgeCheck | 20+ | years of experience behind our products |
-| Package | 5 | chemical product lines |
-| Users | 4 | customer segments served |
-
-Each tile is `1px solid rgba(255,255,255,.18)` at `14px` radius over a `rgba(255,255,255,.05)` glass fill, with a lift-and-brighten hover. The icon badge is a 38px rounded square tinted in brand blue. The strip's old `border-top` rule was removed — a rule above three bordered cards reads as clutter.
-
-The `5` counts the actual product lines on the page (specialty maintenance, water treatment, waste water treatment, housekeeping, fragrances). The `4` counts the customer segments in *Industries We Serve*. Both are verifiable from the page itself rather than asserted.
-
-### Hero headline alternatives
-
-1. **Trusted chemical products, delivered to industries, hospitals and businesses.** *(in use — leads with the promise, names the segments, strong for SEO)*
-2. **The chemical products you need, delivered when you need them.** *(shortest and most universal; strongest for individual buyers)*
-3. **Trusted chemical products, backed by 20+ years of manufacturing experience.** *(leads with credibility; use if trust is the bigger objection than convenience)*
+Still outstanding: §8.1–§8.6 as full long-form detail sections/pages (currently only ported in condensed form inside the What We Do tabs), §9 Footer, and replacing/removing items 3, 8, 9, 10 above with their §-numbered equivalents from this document. The mockup has no dedicated "Who we are"/About section at all — flagging rather than removing it unprompted, since that's a bigger content decision than what's been asked so far.
 
 ---
 
-## 2. About / Introduction
+## 3. Industries We Serve
 
-**Label:** Who we are
-**Heading:** Chemical products you can rely on.
+**Label:** Industries
+**Heading:** Chemical Solutions Across Multiple Industries
+**Sub:** Suraxil serves diverse industrial, commercial and institutional applications.
 
-> Suraxil delivers trusted chemical products to industries, hospitals, businesses and individual customers. From daily facility upkeep to water treatment and effluent management, we keep it simple to get the right product, in the right quantity, when you need it.
+| Industry | Copy |
+|---|---|
+| **Manufacturing** | Process chemicals, water treatment and industrial maintenance. |
+| **Automotive & Engineering** | Cleaning, maintenance and treatment solutions. |
+| **Textile** | Process chemicals, wet-processing support and facility cleaning for textile operations. |
+| **Food & Beverage** | Water treatment, cleaning and facility applications. |
+| **Pharmaceutical** | Specialized cleaning, water and facility-related applications. |
+| **Hospitality** | Housekeeping, cleaning, fragrance and water treatment solutions. |
+| **Chemical & Process Industries** | Industrial water, wastewater and maintenance solutions. |
+| **Commercial & Institutional** | Cleaning, housekeeping, fragrance and facility solutions. |
 
-> Every product we deliver is made by manufacturers with more than 20 years of experience in the industry, and arrives with the technical and safety documentation you need. One point of contact, from your first enquiry through to delivery.
+✅ **Live now.** Replaced the old 4-card "Industries we serve" section (customer segments: Industries & manufacturing / Hospitals & healthcare / Individual customers / Businesses & institutions) with this 8-card industry-vertical grid, reusing the existing `industry-grid`/`industry-card` styling (already a 4-column responsive grid, so 8 cards wrap cleanly into two rows — no CSS changes needed).
 
-**Checklist**
-- Trusted chemical products across every major category
-- Backed by more than 20 years of manufacturing experience
-- One point of contact from enquiry through to delivery
+⚠️ **Textile copy was authored by me, not the client.** The mockup never supplied a blurb for Textile (only the FAQ and footer nav reference it) — I wrote a one-line description consistent with the other cards' tone so the card isn't blank. Flagging clearly in case the client wants to replace it with their own wording.
 
-**Section artwork** — a hub-and-spoke: Suraxil as the blue hub at the centre, six sector nodes around it, each carrying the icon for what it represents (Factory = industry, HeartPulse = healthcare, FlaskConical = pharma/lab, Building2 = business, Users = individual customers, Droplets = water treatment). It illustrates the caption underneath it, *Sectors we serve*, instead of the anonymous coloured dots that were there before.
+**Icons used** (all reused from icons already bundled in the app — no new imports): Manufacturing → Factory, Automotive & Engineering → Wrench, Textile → Package, Food & Beverage → Droplets, Pharmaceutical → FlaskConical, Hospitality → Sparkles, Chemical & Process Industries → Waves, Commercial & Institutional → Building2. None of the mockup's `<..Icone//..>` placeholders specified actual icons, so this mapping is my own judgment call based on each blurb's theme.
 
-The viewBox is `440 × 260` (aspect 1.69), capped at `max-width: 440px`. It was `320 × 320` — a square that the card rendered at roughly 490px wide and therefore ~490px tall, which swallowed the section. It now sits at 260px tall.
-
-The one place the distinction is drawn is *"made by manufacturers with more than 20 years of experience"* — it credits the makers without turning the sentence into a disclaimer.
+**Heading no longer wraps.** Every section heading on the page is capped at `max-width:640px` (a site-wide rule in `.section-head`), and at 32px this heading's 46 characters wrapped to two lines. Widened just this section's heading container to `960px` via an inline style override (scoped to this one section only — the global `.section-head` rule, and every other section's heading, is untouched). This only raises the *ceiling*; it does not force single-line text, so the heading still wraps naturally on narrow/mobile viewports where 960px of space isn't available — it does not overflow or cause horizontal scrolling there.
 
 ---
 
-## 3. Why Choose Suraxil
+## 4. Why Suraxil
 
 **Label:** Why Suraxil
-**Heading:** Why customers buy from us.
-**Sub:** The right product, delivered on time, with the documentation you need. That is the whole promise.
+**Heading:** More Than a Chemical Supplier.
+**Statement:** Suraxil is built around a simple idea: **the right chemical solution starts with understanding the application.**
 
-| Card | Copy |
+| Feature | Copy |
 |---|---|
-| **Trusted manufacturers** | Every product we deliver comes from established manufacturers with a proven track record. |
-| **20+ years of experience** | More than two decades of hands-on chemical manufacturing experience stands behind the products we deliver. |
-| **Quality-focused sourcing** | Consistency matters. What arrives matches what you ordered, batch after batch. |
-| **Wide range of products** | Specialty maintenance, water and waste water treatment, housekeeping and fragrances — all under one enquiry. |
-| **Reliable procurement support** | We handle availability, quantities, documentation and delivery coordination so you do not have to. |
-| **Customer-focused service** | A plant, a hospital, a small business or a single buyer — the same clear answers and the same attention. |
+| **Comprehensive Portfolio** | Multiple chemical solution categories under one partner. |
+| **Application-Focused** | Solutions organized around real industrial and commercial applications. |
+| **Technical Approach** | Chemical recommendations aligned with the specific requirement. |
+| **Customization** | Solutions can be approached around specific application needs. |
+| **Industrial Focus** | Designed for industrial, commercial and institutional environments. |
+| **Long-Term Partnership** | Focused on supporting ongoing operational requirements. |
+
+✅ **Live now — back to 6 tiles.** This section briefly carried 12 tiles (the mockup's 6 features plus the site's original 6 "Trusted manufacturers" etc. cards, added back on request). Per your latest request, the original 6 have been removed again, so the grid is back to just the 6 mockup features above — still the existing `why-grid`/`why-card` styling (3-column grid, 6 items in 2 clean rows). The statement line still renders with the second half bold (`<strong>`), matching the mockup's two-weight styling.
+
+**Icons used** (all reused, no new imports): Comprehensive Portfolio → Package, Application-Focused → Search, Technical Approach → ClipboardList, Customization → Wrench, Industrial Focus → Factory, Long-Term Partnership → Users. Same caveat as §3: this mapping is my own judgment call, since the mockup's icon placeholders weren't specific.
 
 ---
 
-## 4. Industries We Serve
+## 5. Our Approach
 
-**Label:** Industries we serve
-**Heading:** Built for every kind of buyer.
-**Sub:** Large orders and single purchases are handled by the same team, with the same care. If you need a chemical product, you are in the right place.
-
-| Segment | Copy |
-|---|---|
-| **Industries & manufacturing** | Plants and production facilities that need maintenance, cleaning and treatment chemicals for day-to-day operations. |
-| **Hospitals & healthcare** | Hospitals, clinics and healthcare facilities that need a dependable supply of disinfectants, cleaning and hygiene products. |
-| **Individual customers** | Individual buyers who need a specific chemical product, in the quantity they actually need. |
-| **Businesses & institutions** | Offices, hotels, facility management teams and institutions with recurring chemical requirements. |
-
----
-
-## 5. Chemical Product Sourcing
-
-**Label:** Our chemical products
-**Heading:** Find the product you need. We deliver it.
-
-> Tell us the product, the application, or simply the problem you need solved. Pick a line below to see what is available, or send us an enquiry and we will confirm the right product, the price and the delivery. Technical and safety data sheets come with every order on request.
-
-**Product lines**
-
-| Line | Blurb |
-|---|---|
-| Specialty maintenance | De-greasers, disinfectants and drain treatments for daily facility upkeep. |
-| Water treatment | Cooling towers, chillers, boilers and RO systems, kept scale- and corrosion-free. |
-| Waste water treatment | Coagulants, flocculants and biological aids for cleaner effluent discharge. |
-| House keeping products | Surface, glass and washroom care made for everyday commercial use. |
-| Procurement support | Product guidance, documentation and delivery coordination on every order. |
-| Fragrances | Concentrated, water-soluble room fresheners across three ranges. |
-
-The full SRX catalog (all product entries and the three fragrance ranges) is unchanged. Category intros were reworded only where they claimed in-house formulation — e.g. *"Dosing programmes for cooling towers…"* → *"Treatment chemicals for cooling towers, chillers, boilers and RO plants, to keep scale, corrosion and microbial growth in check."*
-
----
-
-## 6. How It Works
-
-**Label:** How it works
-**Heading:** Three steps from enquiry to delivery.
-**Sub:** No account to open and no minimum to clear before you can ask. Start with a message.
+**Label:** Our Approach
+**Heading:** From Requirement to Solution.
 
 | # | Step | Copy |
 |---|---|---|
-| 01 | **Tell us what you need** | Send us the product name, the application, or simply the problem you are trying to solve. A rough description is enough to start. |
-| 02 | **We source and confirm** | We match your requirement to the right product, confirm availability from manufacturers with decades of experience, and send you the pricing. |
-| 03 | **You receive the product** | We deliver the product with the documentation you need, and stay available for repeat orders and follow-up support. |
+| 01 | **Understand** | We understand your application and challenge. |
+| 02 | **Analyze** | We identify the relevant chemical and treatment requirement. |
+| 03 | **Recommend** | We propose an appropriate solution. |
+| 04 | **Implement** | We support the application and implementation process. |
+| 05 | **Optimize** | We continuously look for opportunities to improve the solution. |
 
-**Callout:** Not sure which product fits? Describe the application and we will suggest the options worth considering before you commit to anything.
+*(This 5-step process reappears with slightly longer, application-specific wording in §8.7 under Custom Chemical Solutions — kept as a separate instance there since the mockup repeats it deliberately at the bottom of the page as a closing CTA block.)*
 
----
+✅ **Live now.** This was a section that didn't exist on the page at all before — added directly after Why Suraxil and before Industries (matching the mockup's page order, where Our Approach immediately follows Why Suraxil), reusing the existing `steps-grid`/`step-card`/`step-num` styling already built for the "How it works" section further down the page — no CSS changes needed. It's a 3-column grid; with 5 steps it wraps as 3 + 2, which is a normal/expected pattern for that grid, not a bug.
 
-## 7. Trust / Experience
+**Icons used** (all reused, no new imports): Understand → Search, Analyze → ClipboardList, Recommend → BadgeCheck, Implement → Wrench, Optimize → CircleCheck.
 
-**Label:** Experience you can rely on
-**Heading:** More than 20 years of experience behind every product we deliver.
-
-> The chemical products Suraxil delivers are made by manufacturers with more than 20 years of experience across specialty maintenance, water treatment and effluent treatment chemistry. That depth of experience is why the range stays consistent order after order — and it is why we are selective about what goes into it.
-
-**What stands behind the range**
-- Manufacturers with 20+ years of hands-on chemical experience
-- Established production and quality control processes
-- Consistent, repeatable formulations order after order
-- Technical and safety documentation available on request
-
-**What you get with Suraxil** *(guidance, documentation and delivery)*
-
-> We take on the parts of buying chemicals that cost you time — identifying the right product, confirming availability, gathering documentation and coordinating delivery — so you deal with one team from start to finish.
-
-- A single point of contact for every enquiry
-- Guidance on the right product for your application
-- Coordination of quantities, documents and delivery
-- Support for repeat and scheduled requirements
-
-Every "20+ years" reference is attributed to the **manufacturers**, never to Suraxil itself — but it is framed as the strength behind the range, not as a caveat.
+⚠️ **Note:** the page now has two different 5-step "process" blocks once §8.7 is eventually built (this one, and the longer-worded one at the bottom of the page under Custom Chemical Solutions) — intentional per the mockup, flagged here again as a reminder since it's easy to mistake for a duplicate bug later.
 
 ---
 
-## 8. Final CTA
+## 6. The Suraxil Difference
 
-**Label:** Get in touch
-**Heading:** Tell us what you need. We will deliver it.
+**Label:** The Suraxil Difference
+**Heading:** Why Manage Multiple Chemical Requirements Separately?
+**Sub:** Suraxil brings multiple solution categories together under one partner.
 
-> Send us the product, quantity or application you are looking for — whether you are an industrial plant, a hospital, a business or an individual customer — and our team will come back with availability and a quote.
+| Requirement | Suraxil Solution |
+|---|---|
+| Water Treatment | ✓ |
+| Wastewater Treatment | ✓ |
+| Industrial Maintenance | ✓ |
+| Cleaning Solutions | ✓ |
+| Housekeeping | ✓ |
+| Fragrance | ✓ |
+| Custom Chemical Solutions | ✓ |
+| Project Applications | ✓ |
 
-**Button:** Email info@suraxil.com
+**Closing line:** One Partner. Multiple Applications. Smarter Chemical Management.
 
-Contact details (Sriperumbudur address, phone numbers, email) are unchanged.
-
----
-
-## CTA button text options
-
-Ranked by directness. Options 1 and 2 are currently live.
-
-1. **Request a quote** — clearest commercial intent; best for the B2B buyer who already knows the product. *(in use, hero primary)*
-2. **Browse products** — low-commitment, lets a visitor self-serve first. *(in use, hero secondary)*
-3. **Tell us what you need** — warmest and lowest-friction; strongest for individual customers and anyone unsure of the exact product.
-4. **Get your products delivered** — leads with the outcome rather than the transaction; good for a mid-page CTA.
-5. **Talk to our team** — most consultative; suits complex or recurring industrial requirements.
+✅ **Live now.** This section didn't exist on the page before — added directly after Our Approach and before Industries. Rendered as a real `<table>` (Requirement / Suraxil Solution columns, a teal checkmark icon in every row) styled with inline styles that reference the site's existing CSS custom properties (`var(--line)`, `var(--teal)`, `var(--ink)`, etc.) rather than new stylesheet classes — this was a deliberate choice since no comparison-table pattern already existed on the page to reuse, and inline styles guarantee the table renders correctly without needing to touch the shared stylesheet. The closing line renders centered below the table in the site's heading font.
 
 ---
 
-## What changed from the previous manufacturer positioning
+## 7. Frequently Asked Questions
 
-Removed, because each claimed manufacturing or a credential that belongs to a factory:
+**What chemical solutions does Suraxil provide?**
+Suraxil provides solutions across water treatment, wastewater treatment, specialty maintenance, housekeeping, fragrance applications, projects and customized chemical requirements.
 
-- "Suraxil **formulates and manufactures** … from **our own laboratory** in Chennai"
-- "**ISO 9001:2015 & 14001:2015 certified**" hero badge, and the "Every formulation ships from **our ISO-certified factory**" paragraph
-- "Suraxil started in **2004**…", "We implement environmentally responsible processes **for manufacturing**…"
-- Hero stats **40+ distinct formulations**, **6 industry verticals**, **ISO 9001/14001**
-- **Suraxil Labs** R&D wing, the in-house testing lab, field installation teams, and the custom-build projects section (ETP/WTP design, HVAC contracting, BOD/COD/Legionella testing)
+**Does Suraxil provide water treatment chemicals?**
+Yes. Suraxil covers applications including cooling towers, boilers, chillers, RO systems, HVAC systems and specialized water treatment.
 
-**If any of these are genuine facts about the manufacturing group behind Suraxil**, they can go back — but they need re-attributing ("made in an ISO-certified facility"), never stated as Suraxil's own operation. They were pulled rather than reworded because I could not verify who holds them.
+**Does Suraxil provide wastewater treatment chemicals?**
+Suraxil provides chemical solutions for industrial wastewater and effluent treatment applications, including coagulation, flocculation, decolorization, pH control and sludge management.
 
-Section order is now: Hero → About → Why Suraxil → Industries → Product range → Catalog → Fragrances → How it works → Experience → Contact. Nav and footer were updated to match, and all in-page anchors resolve.
+**Does Suraxil provide industrial cleaning chemicals?**
+Yes. Solutions include descaling, degreasing, industrial cleaning, equipment cleaning and process cleaning applications.
+
+**Can Suraxil support customized requirements?**
+Suraxil can assess specific application requirements and work toward an appropriate chemical solution based on the application.
+
+**Which industries can use Suraxil solutions?**
+Suraxil solutions can be applied across manufacturing, automotive and engineering, textile, food and beverage, pharmaceutical, hospitality, chemical and process industries, commercial and institutional environments.
+
+*(This FAQ answer is the only place Textile is described in industry copy — see the flag in §3.)*
+
+✅ **Live now.** Added directly above the Contact ("Get in touch") section — it didn't exist on the page before. Also added an **"FAQ" link to the header navigation** (both desktop nav and mobile menu, since both read from the same shared link list), pointing to `#faq`, positioned between "Industries" and "Contact" to match the section's position on the page.
+
+**Redesigned for a more polished, card-style accordion.** Still built on native `<details>`/`<summary>` (no JS state, works with keyboard/screen readers out of the box), but upgraded from plain bottom-border rows to:
+- Each question is its own rounded card (`faq-item`) with a subtle border, that highlights (border turns blue, soft shadow appears) both on hover and while expanded, so it's clear which one is open.
+- A round **"+" icon** on the right of each question rotates 45° into an "×" when expanded, and fills in blue — the classic expand/collapse affordance, done in pure CSS via the `[open]` attribute selector (no extra JS needed for the animation).
+- A short intro line was added under the section heading: *"Quick answers to the questions we hear most. Still need something specific? Reach out and we will help directly."*
+
+This required adding real CSS rules (`.faq-list`, `.faq-item`, `.faq-icon` and their `:hover`/`[open]` states) to the site's shared stylesheet, rather than inline styles — the rotate/hover/open-state interactions aren't expressible with inline styles alone, since those can't target pseudo-classes or attribute selectors. This is the first FAQ-specific styling added to the shared stylesheet; everything else added so far reused existing classes or stayed inline.
+
+---
+
+## 8. Solution Detail Sections
+
+Heading above the group: **Know More Details about Our Chemical Solutions.** Each numbered block below is a distinct in-page section (anchor IDs should match the URL slugs in the SEO section).
+
+### 8.1 Water Treatment Chemicals for Critical Systems — `#water-treatment-chemicals`
+
+> Water quality directly affects equipment performance, operating efficiency and maintenance requirements. Suraxil provides treatment solutions across key industrial water systems.
+
+| Sub-application | Copy |
+|---|---|
+| **Cooling Tower Treatment** | Solutions for scale control, corrosion control, microbiological control, biocide treatment and water conditioning. |
+| **Boiler Water Treatment** | Solutions supporting scale prevention, corrosion control, oxygen management, pH control and boiler system protection. |
+| **Chiller Treatment** | Chemical solutions for maintaining chiller water systems and supporting efficient operation. |
+| **RO Water Treatment** | Solutions addressing membrane protection, scaling, fouling, dechlorination and pretreatment requirements. |
+| **HVAC Cleaning & Treatment** | Solutions for HVAC systems, cleaning, flushing, passivation and related treatment requirements. |
+| **Specialized Water Treatment** | Application-focused chemical solutions for specific water quality and treatment challenges. |
+
+**CTA:** Talk to a Water Treatment Specialist
+
+### 8.2 Wastewater Treatment Solutions for Industrial Applications — `#wastewater-treatment-chemicals`
+
+> Effective wastewater treatment requires the right chemistry for the right process. Suraxil provides chemical solutions across different stages of industrial wastewater and effluent treatment.
+
+| Stage | Copy |
+|---|---|
+| **Coagulation** | Chemical solutions to support the separation of suspended and colloidal matter. |
+| **Flocculation** | Solutions designed to support effective floc formation and downstream separation. |
+| **Decolorization** | Treatment solutions for wastewater colour reduction and process requirements. |
+| **pH Control** | Chemical solutions for maintaining required pH conditions throughout treatment processes. |
+| **Biological Treatment** | Chemical support solutions for biological wastewater treatment applications. |
+| **Sludge Management** | Solutions supporting sludge handling and treatment requirements. |
+| **ETP & Industrial Effluent** | Application-focused chemical solutions for industrial effluent treatment systems. |
+
+**CTA:** Discuss Your Wastewater Requirement
+
+### 8.3 Specialty Maintenance — `#industrial-maintenance-chemicals`
+
+**Heading:** Keep Equipment Clean. Keep Operations Moving.
+> Industrial equipment and processes require regular cleaning and maintenance to maintain performance.
+
+| Sub-application | Copy |
+|---|---|
+| **Descaling** | Solutions for removing mineral deposits and scale buildup. |
+| **Degreasing** | Chemical solutions for removing oils, grease and industrial residues. |
+| **Industrial Cleaning** | Cleaning solutions for industrial environments, equipment and process applications. |
+| **Equipment Cleaning** | Application-focused chemicals for equipment maintenance and cleaning. |
+| **Corrosion Management** | Solutions supporting corrosion control and equipment protection. |
+| **Process Cleaning** | Specialized chemical solutions for process-related cleaning requirements. |
+
+**CTA:** Find a Maintenance Solution
+
+### 8.4 Housekeeping — `#housekeeping-cleaning-chemicals`
+
+**Heading:** Professional Cleaning Solutions for Every Facility.
+> From daily maintenance to specialized cleaning requirements, Suraxil provides solutions for professional environments.
+
+| Sub-application | Copy |
+|---|---|
+| **Floor Care** | Cleaning and maintenance solutions for different flooring applications. |
+| **Washroom Care** | Solutions for washroom cleaning and maintenance. |
+| **Surface Cleaning** | Cleaning solutions for common commercial and institutional surfaces. |
+| **Glass Cleaning** | Solutions for glass and transparent surfaces. |
+| **Kitchen & Utility Cleaning** | Cleaning solutions for kitchens, utility areas and supporting facilities. |
+| **Facility Care** | Solutions for maintaining clean and professional commercial environments. |
+
+**Applications:** Hotels · Offices · Hospitals · Institutions · Commercial Buildings · Facilities
+
+**CTA:** Talk to a Specialist
+
+### 8.5 Fragrance Solutions — `#fragrance-solutions`
+
+**Heading:** Make Every Space More Memorable.
+> Fragrance plays an important role in the experience of commercial and professional spaces.
+
+Suraxil provides fragrance solutions for: Hospitality · Offices · Retail environments · Commercial spaces · Institutions · Facility care.
+
+> From everyday environments to customer-facing spaces, fragrance solutions can help create a more consistent atmosphere.
+
+**CTA:** Explore Fragrance Solutions
+
+### 8.6 Projects — Beyond Products
+
+**Heading:** Beyond Products. Solutions for Industrial Challenges.
+> Some requirements cannot be solved with a standard chemical product alone. Suraxil supports application-focused requirements across:
+
+| Project type | Copy |
+|---|---|
+| **Water Treatment Projects** | Treatment solutions for industrial water systems. |
+| **Wastewater & Effluent Projects** | Chemical solutions supporting ETP and industrial wastewater applications. |
+| **HVAC Cleaning** | Cleaning and treatment solutions for HVAC systems. |
+| **Water Optimization** | Chemical treatment approaches focused on system performance and water management. |
+| **Industrial Application Support** | Solutions aligned with specific operating conditions and application requirements. |
+
+**CTA:** Discuss Your Project
+
+### 8.7 Custom Chemical Solutions — `#custom-chemical-solutions`
+
+**Heading:** Your Application Is Different. Your Solution Should Be Too.
+> Every industry operates under different conditions. Equipment, water quality, process conditions, operating environment and treatment objectives can all influence chemical requirements.
+
+Suraxil approaches specialized requirements through a structured process (second instance of the 5-step process — see the note in §5):
+
+| # | Step | Copy |
+|---|---|---|
+| 01 | **Understand** | Understand your application, process and challenge. |
+| 02 | **Analyze** | Identify the relevant treatment or chemical requirement. |
+| 03 | **Recommend** | Recommend a solution based on the application. |
+| 04 | **Implement** | Support implementation according to the requirement. |
+| 05 | **Optimize** | Review the application and refine the solution where required. |
+
+**Closing CTA block:**
+> Have a specific chemical requirement?
+
+**Button:** Talk to Suraxil
+
+✅ **Live now.** Added directly above the Contact ("Get in touch") section, after FAQ — it didn't exist on the page before. Reuses the `steps-grid`/`step-card` numbered-step styling (same pattern as §5 Our Approach, same icon choices: Understand → Search, Analyze → ClipboardList, Recommend → BadgeCheck, Implement → Wrench, Optimize → CircleCheck) and a bordered callout box (inline-styled, same low-risk approach as §6/§7) for the closing "Talk to Suraxil" CTA, which links to `#contact`.
+
+---
+
+## 9. Footer
+
+**Brand column**
+- **Name:** Suraxil
+- **Tagline:** Specialty Chemicals & Industrial Solutions
+- **Blurb:** Chemical solutions for water treatment, wastewater treatment, industrial maintenance, housekeeping, fragrance and specialized applications.
+
+**Solutions column**
+Water Treatment · Wastewater Treatment · Specialty Maintenance · Housekeeping · Fragrance Solutions · Projects · Custom Solutions
+
+**Industries column**
+Manufacturing · Automotive & Engineering · Textile · Food & Beverage · Pharmaceutical · Hospitality · Chemical & Process · Commercial & Institutional
+
+**Company column**
+About Suraxil · Projects · Contact
+
+**Closing CTA**
+> Need a Chemical Solution?
+
+**Button:** Request a Quote →
+
+⚠️ **This §9 footer design (Solutions/Industries/Company/CTA, 4 columns) has not been built** — the live footer is still the site's original 3-column structure (Products / Company / Get in touch), not this mockup layout. What *is* live now is documented below.
+
+### Live now — header nav & footer "Company" column arrangement
+
+Per request, both were reordered to match the actual live page's section order and to properly list all major sections (previously they were stale/mismatched — e.g. still listing the removed "About" section, or listing "Why Suraxil" before "Industries" after Industries had been moved above it).
+
+**Header nav** (desktop + mobile share the same list) — kept concise, top-level sections only:
+Home → What We Do → Industries → Why Suraxil → Products → FAQ → Contact
+
+**Footer "Company" column** — expanded into a full site map of every major section (excluding Home and Products, since Products already has its own dedicated footer column):
+What We Do → Industries → Why Suraxil → Our Approach → The Suraxil Difference → How It Works → Experience → FAQ → Custom Solutions → Contact
+
+Both lists now match the live page's actual top-to-bottom order. The "Products" and "Get in touch" footer columns were untouched.
+
+---
+
+## CTA / button text reference
+
+All button and link labels used across the page, for consistency when building:
+
+| Label | Where used |
+|---|---|
+| Request a Quote | Hero (primary), Footer |
+| Explore Solutions | Hero (secondary) |
+| Explore Water Treatment → | §2 Water Treatment card |
+| Explore Wastewater → | §2 Wastewater card |
+| Explore Maintenance → | §2 Specialty Maintenance card |
+| Explore Housekeeping → | §2 Housekeeping card |
+| Explore Fragrance → | §2 Fragrance card |
+| Discuss Your Requirement → | §2 Custom Solutions card |
+| Talk to a Water Treatment Specialist | §8.1 |
+| Discuss Your Wastewater Requirement | §8.2 |
+| Find a Maintenance Solution | §8.3 |
+| Talk to a Specialist | §8.4 |
+| Explore Fragrance Solutions | §8.5 |
+| Discuss Your Project | §8.6 |
+| Talk to Suraxil | §8.7 closing CTA |
+
+---
+
+## Open items for the client / next build
+
+1. **Textile industry** has no card copy in the mockup's Industries grid (§3) despite being referenced in the FAQ and footer nav — needs a one-line blurb before this ships.
+2. ~~H1 conflict between the mockup's hero headline and the SEO Foundation's "Recommended H1".~~ **Resolved** — client confirmed the mockup's hero headline as the live `<h1>` (see SEO section).
+3. Several CTAs across §2 and §8 point to the same underlying section by different labels (e.g. "Explore Water Treatment" vs "Talk to a Water Treatment Specialist") — confirm both are meant to land on `#water-treatment-chemicals`, just at different scroll depths (card-level vs. detail-level), rather than separate pages, until the future multi-page URLs in the SEO section are built.
+4. ~~The hero copy hadn't shipped to the live page.~~ **Fixed** — the hero headline and subheadline in `assets/index-BN5FljXk.js` have been patched to match §1 Hero (exact, verified string replacement of the two literals, not a rebuild — no other bundle content touched). The rest of the page (§2 onward) still needs to be ported; there is still no editable React source for the remaining sections.
