@@ -3,7 +3,9 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
+import { GoogleTagManagerHead, GoogleTagManagerBody } from "@/components/analytics/GoogleTagManager";
 import { buildMetadata, homeSeo } from "@/lib/seo/metadata";
+import { siteConfig } from "@/config/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -26,9 +28,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <head>
+        <GoogleTagManagerHead gtmId={siteConfig.gtmId} />
         <OrganizationJsonLd />
       </head>
       <body>
+        <GoogleTagManagerBody gtmId={siteConfig.gtmId} />
         <Header />
         {children}
         <Footer />

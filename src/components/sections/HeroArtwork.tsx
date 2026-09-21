@@ -12,7 +12,6 @@ export function HeroArtwork() {
     <div
       className="hero-visual"
       aria-hidden="true"
-      // eslint-disable-next-line react/no-danger -- static decorative SVG, no user input
       dangerouslySetInnerHTML={{ __html: HERO_SVG }}
     />
   );

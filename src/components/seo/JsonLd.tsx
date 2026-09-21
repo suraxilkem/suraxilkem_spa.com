@@ -52,7 +52,6 @@ export function OrganizationJsonLd() {
   return (
     <script
       type="application/ld+json"
-      // eslint-disable-next-line react/no-danger -- static, server-generated JSON-LD, no user input
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );

@@ -55,6 +55,8 @@ export const siteConfig = {
     { label: "Contact", href: "/#contact" },
   ],
   headerCta: { label: "Request a Quote", href: "/#contact" },
+  /** Real container ID; override per-environment via NEXT_PUBLIC_GTM_ID if needed (e.g. a staging container). */
+  gtmId: process.env.NEXT_PUBLIC_GTM_ID || "GTM-MMJWJ43T",
   social: {
     facebook: "https://www.facebook.com/suraxilkem",
     instagram: "https://www.instagram.com/suraxilkem",
