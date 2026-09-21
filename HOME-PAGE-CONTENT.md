@@ -109,7 +109,9 @@ Until those pages exist, mirror the same slugs as in-page anchor IDs (`#water-tr
 **Heading:** One Partner. Multiple Chemical Solutions.
 **Sub:** Suraxil brings together a broad range of chemical solutions designed for industrial, commercial and facility applications.
 
-Six solution cards, each pairing with an image, laid out in an alternating (checkerboard) two-column grid per the mockup:
+*(This briefly changed to a label-less "Our Solutions" heading + a different sub-line, per a reference image showing that variant. Per a follow-up request, it's been reverted back to this original heading/sub/eyebrow — the row layout, photos and card styling from that redesign were kept; only the heading block changed back.)*
+
+Six solution cards, each paired with an image, laid out in an alternating (checkerboard) two-column grid — row 1: card left / photo right, row 2: photo left / card right, and so on:
 
 | Card | Copy | CTA |
 |---|---|---|
@@ -120,47 +122,56 @@ Six solution cards, each pairing with an image, laid out in an alternating (chec
 | **Fragrance Solutions** | Fragrance solutions designed for hospitality, commercial spaces, offices, retail environments and institutions. | Explore Fragrance → |
 | **Custom Solutions** | Chemical solutions developed around specific application requirements, operating conditions and performance objectives. | Discuss Your Requirement → |
 
-Each card CTA now opens its matching tab in-page (see below) rather than linking out to a separate detail page/anchor.
+Each card CTA is a direct link to its matching full section under "Know More Details about Our Chemical Solutions" (§8) further down the page.
 
-✅ **Live now**, inserted directly after the Hero and before the existing "Who we are" section, using the site's already-styled `overview-card` component (icon + title + blurb + arrow link — the same visual pattern used by the existing product-lines grid) so no new CSS was needed.
+✅ **Live now, redesigned to match the "Our Solutions" reference image** — the layout changed from a 3-column grid of self-contained cards to 6 stacked two-column rows (card + photo panel, alternating sides), matching the reference exactly. Implementation:
 
-### What We Do — detail tab view
+- **Card:** still the `overview-card` component (icon + title + blurb + arrow link), reused as the base, with a `solution-card` class layered on. The icon badge color varies per card to match the reference — blue for Water Treatment, Housekeeping and Custom Solutions; teal for Wastewater Treatment; purple for Specialty Maintenance and Fragrance Solutions (a new purple accent, `#7C5CFC`, used only here — added as an inline style, not a new global color variable, since nothing else on the page uses it yet).
+- ✅ **Rows shrunk, per request** — the six rows were taking up a lot of vertical space (the reference's padding/photo-height, taken at face value, is quite generous). Reduced: card padding `40px 36px → 24px 22px`, title `22px → 19px`, blurb `→ 13.5px`, row gap `28px → 20px`, row spacing `margin-bottom 24px → 16px`, and photo panel `min-height 260px → 160px` (corner radius `20px → 16px` to match the smaller size proportionally). Layout, alternating order, photos and colors are all unchanged — only the sizing.
+- ✅ **Photo panels now use real photos, cropped directly from the client's reference image.** Per request, the gradient+icon placeholder was replaced: the six photo regions (RO/water-treatment plant, wastewater clarifier, a technician cleaning heat-exchanger tubes, a mop and caution sign, a reed diffuser scene, lab flasks and beakers) were cropped pixel-for-pixel out of the reference screenshot and saved as real image files at `assets/solutions/water-treatment.jpg`, `wastewater-treatment.jpg`, `specialty-maintenance.jpg`, `housekeeping.jpg`, `fragrance-solutions.jpg`, `custom-solutions.jpg` (~13–34KB each, JPEG). `.solution-photo` now renders an `<img>` (object-fit: cover, clipped to the rounded corners) instead of a gradient. ⚠️ **Caveat:** since these came from a screenshot rather than original photography, they're limited to the mockup's on-screen resolution (~390×225px), so they'll look a little soft when the panel renders wider than that on a large desktop screen. Fine as a real placeholder now; swap in full-resolution stock/brand photography later for a sharper result — same filenames, same folder.
+- Each card's "Explore X →" link still points to its matching full section under §8, unchanged from before.
 
-Below the six summary cards, a tab strip + content panel was added directly inside this section (reusing the catalog's existing `tab-bar` / `tab-btn` / `tab-btn-active` styling, plus the `why-grid` / `why-card` styling for sub-application items and `badge` for the plain context lists — zero new CSS). Clicking a summary card's CTA sets the matching tab active and scrolls down to the panel; the tab strip itself is also directly clickable.
+| Card CTA | Links to |
+|---|---|
+| Explore Water Treatment → | `#water-treatment-chemicals` — Water Treatment Chemicals for Critical Systems |
+| Explore Wastewater → | `#wastewater-treatment-chemicals` — Wastewater Treatment Solutions for Industrial Applications |
+| Explore Maintenance → | `#industrial-maintenance-chemicals` — Keep Equipment Clean. Keep Operations Moving. |
+| Explore Housekeeping → | `#housekeeping-cleaning-chemicals` — Professional Cleaning Solutions for Every Facility |
+| Explore Fragrance → | `#fragrance-solutions` — Make Every Space More Memorable. |
+| Discuss Your Requirement → | `#projects` — Beyond Products. Solutions for Industrial Challenges. |
 
-| Tab | Panel heading | Sub-applications shown | Panel CTA |
-|---|---|---|---|
-| Water Treatment | Water Treatment Chemicals for Critical Systems | Cooling Tower Treatment, Boiler Water Treatment, Chiller Treatment, RO Water Treatment, HVAC Cleaning & Treatment, Specialized Water Treatment | Talk to a Water Treatment Specialist |
-| Wastewater Treatment | Wastewater Treatment Solutions for Industrial Applications | Coagulation, Flocculation, Decolorization, pH Control, Biological Treatment, Sludge Management, ETP & Industrial Effluent | Discuss Your Wastewater Requirement |
-| Specialty Maintenance | Keep Equipment Clean. Keep Operations Moving. | Descaling, Degreasing, Industrial Cleaning, Equipment Cleaning, Corrosion Management, Process Cleaning | Find a Maintenance Solution |
-| Housekeeping | Professional Cleaning Solutions for Every Facility | Floor Care, Washroom Care, Surface Cleaning, Glass Cleaning, Kitchen & Utility Cleaning, Facility Care — plus an Applications tag row (Hotels · Offices · Hospitals · Institutions · Commercial Buildings · Facilities) | Talk to a Specialist |
-| Fragrance Solutions | Make Every Space More Memorable. | No sub-cards (mockup has none) — rendered as a tag row: Hospitality, Offices, Retail environments, Commercial spaces, Institutions, Facility care | Explore Fragrance Solutions |
-| Custom Solutions | Beyond Products. Solutions for Industrial Challenges. | Water Treatment Projects, Wastewater & Effluent Projects, HVAC Cleaning, Water Optimization, Industrial Application Support (this is §8.6 "Projects", not §8.7 "Custom Chemical Solutions" — matches what the six card CTAs actually map to) | Discuss Your Project |
-
-This content is a direct, condensed port of §8.1–§8.4, §8.5 and §8.6 below (the detail sections' body copy is unchanged; only presentation differs — one shared tab view here vs. six separate long-form sections in §8). All six panel CTAs point to `#contact` (the existing Contact section) since there is no separate lead form per category yet.
+⚠️ **The in-page tab strip + preview panel that used to sit below the six cards has been removed**, per request. It briefly existed as a condensed duplicate of §8's content (tab click → switch panel, in-place, without leaving this section) — now that §8's full sections are live further down the page and the cards link straight there, that duplicate view was redundant. Removed cleanly: the `useState` hook driving the active tab, the tab-bar markup, and the panel markup were all taken out of `sxWhat`, which is back to a plain stateless component (just the section head + the 6 linked cards). `sxWhatDetail` (the data itself) was **not** touched — it still exclusively powers §8's full sections, so no content was lost.
 
 ⚠️ **Page-structure note (live section order, keep this updated):**
 
 ```
 1. Hero                      — ported (new)
-2. What We Do (+ tabs)       — ported (new)
+2. What We Do (+ alternating rows) — ported (new)
 3. Industries                — ported (new) — moved above Why Suraxil to match §3/§4 order
 4. Why Suraxil (6 tiles)     — ported (new mockup 6)
 5. Our Approach               — ported (new) — didn't exist before
 6. The Suraxil Difference    — ported (new) — didn't exist before
-7. "Our chemical products" + catalog tabs — OLD content, not yet ported
+7. Catalog tabs ("Browse the catalog by application") — OLD content, not yet ported, still live — now 5 tabs (Specialty maintenance, Water treatment, Waste water treatment, House keeping products, **Fragrances** — moved in from its own section, see below)
 8. "How it works"            — OLD content, not yet ported
 9. Trust / Experience        — OLD content, not yet ported
 10. FAQ                       — ported (new) — didn't exist before, added directly above Contact
-11. Custom Chemical Solutions (§8.7) — ported (new) — didn't exist before, added between FAQ and Contact
-12. Contact                   — OLD content, not yet ported
+11. Know More Details (§8.1–§8.6, full sections) — ported (new) — didn't exist before, added between FAQ and Custom Chemical Solutions
+12. Custom Chemical Solutions (§8.7) — ported (new) — didn't exist before, added between FAQ and Contact
+13. Contact                   — OLD content, not yet ported
 ```
 
-**"Who we are" removed.** Per request, the old About section (id `about`) was taken out of the page composition entirely — it no longer renders. Its dead references were cleaned up too: the "About" link in the header nav (desktop + mobile) and the "About us" link in the footer's Company column, both of which pointed to `#about` and would otherwise have been broken anchors. The `function hp(){...}` code itself is still physically present in the bundle but is never called from anywhere — harmless dead code, not worth the extra risk of surgically deleting a large function body out of a minified file for no functional gain.
+Footer: ported (new, §9's 4-column layout) — sits after Contact, not numbered above since it's outside `<main>`.
 
-Header nav also updated: "FAQ" link added (`#faq`), between "Industries" and "Contact", in both the desktop nav and mobile menu.
+**Removed/moved sections, in order:**
+- **"Who we are"** (the old About section, id `about`) — taken out of the page composition entirely. Dead references cleaned up: the "About" link in the header nav and the "About us" link in the footer, both of which pointed to `#about`, were either removed or repointed at the time (see the header/footer nav history further down).
+- **"Our chemical products"** (the old `mp` overview section, id `products` — six cards each linking to `#products`) — removed per request. Its only inbound link was the hero's secondary "Browse products" button, which has been repointed to `#catalog` (the remaining "Browse the catalog by application" tabbed section) instead of a broken anchor.
+- **"Fragrances"** (the old standalone `Sp` section, id `fragrances` — "Room fresheners built to last, not just to spray.") — moved into item 7's catalog tabs per request, rather than removed. It's now a tab inside "Browse the catalog by application," reusing that section's existing tab-bar/panel machinery — no new UI code needed, since the tab list is generated automatically from the underlying data object's keys. Its content (three product ranges — Thalam, Ragam, Pallavi — each a list of SRX-branded scents) is unchanged, just relocated from its own section into this tab. No inbound links pointed at `#fragrances`, so nothing needed repointing.
 
-Still outstanding: §8.1–§8.6 as full long-form detail sections/pages (currently only ported in condensed form inside the What We Do tabs), §9 Footer, and replacing/removing items 3, 8, 9, 10 above with their §-numbered equivalents from this document. The mockup has no dedicated "Who we are"/About section at all — flagging rather than removing it unprompted, since that's a bigger content decision than what's been asked so far.
+✅ **Tabs reordered and relabeled, per request.** The 5 catalog tabs now appear in this exact order with these exact labels: **Water Treatment → Wastewater Treatment → Specialty Maintenance → Housekeeping Products → Fragrance Products**. Previously the order was Specialty maintenance, Water treatment, Waste water treatment, House keeping products, Fragrances (insertion order in the underlying data object, which is what the tab bar iterates). The catalog still *opens* on the Specialty Maintenance tab by default (that default wasn't part of this request — only the display order and label wording changed); switching tabs is unaffected.
+
+All three removed/superseded functions' code (`hp`, `mp`, `Sp`) is still physically present in the bundle but never called — harmless dead code, left in place rather than risking a surgical deletion inside a minified single-line file for no functional gain.
+
+Header nav also updated over time: "FAQ" added, "Home"/"Products"/"Why Suraxil" removed, "Projects" and "About" added ("About" repointed to `#why`, since there's no real About section — see the nav history note near §9). "What We Do" is the only outstanding old-content pairing left unaddressed in the list above (catalog tabs, "How it works", Trust/Experience, Contact) — these still carry pre-mockup copy and aren't part of this document's numbered sections yet.
 
 ---
 
@@ -295,6 +306,20 @@ This required adding real CSS rules (`.faq-list`, `.faq-item`, `.faq-icon` and t
 
 Heading above the group: **Know More Details about Our Chemical Solutions.** Each numbered block below is a distinct in-page section (anchor IDs should match the URL slugs in the SEO section).
 
+✅ **Live now — added below FAQ, above Custom Chemical Solutions (§8.7).** All six blocks (§8.1–§8.6) are rendered one after another under a single "Know More Details about Our Chemical Solutions" heading, each with its own `<h3>` heading, intro paragraph, sub-application cards (or a tag row for Fragrance, which has none in the mockup), and CTA button — separated by a thin divider between blocks. Anchor IDs match the SEO section's recommended slugs exactly (`#water-treatment-chemicals`, `#wastewater-treatment-chemicals`, `#industrial-maintenance-chemicals`, `#housekeeping-cleaning-chemicals`, `#fragrance-solutions`), except §8.6 ("Projects — Beyond Products"), which uses `#projects` instead of a slug from that list — the SEO section never allocated one for it, and `#custom-chemical-solutions` was already taken by the live §8.7 section.
+
+**Built by reusing `sxWhatDetail`** — the same data object that originally held this content for the (now-removed) What We Do tab view (§2) — rather than duplicating the copy a second time. It's now the sole source for this section. All six CTA buttons still point to `#contact`.
+
+✅ **Icons added to every sub-application tile, per request.** Each item in every category (30 total, across all six sections — Fragrance has none since it uses a tag row, not cards, per the mockup) now carries its own icon, rendered the same `why-icon` way as other icon+title+desc cards elsewhere on the page (e.g. §4 Why Suraxil). All reused from the 26 icons already bundled in the app — no new imports. Picked per item based on its theme, e.g.:
+
+- Water Treatment: Cooling Tower Treatment → Waves, Boiler Water Treatment → ShieldCheck, Chiller Treatment → Droplets, RO Water Treatment → FlaskConical, HVAC Cleaning & Treatment → SprayCan, Specialized Water Treatment → BadgeCheck
+- Wastewater Treatment: Coagulation → Droplets, Flocculation → Waves, Decolorization → Sparkles, pH Control → ClipboardList, Biological Treatment → FlaskConical, Sludge Management → Wrench, ETP & Industrial Effluent → Factory
+- Specialty Maintenance: Descaling → SprayCan, Degreasing → Sparkles, Industrial Cleaning → Factory, Equipment Cleaning → Wrench, Corrosion Management → ShieldCheck, Process Cleaning → ClipboardList
+- Housekeeping: Floor Care → Sparkles, Washroom Care → Droplets, Surface Cleaning → SprayCan, Glass Cleaning → Search, Kitchen & Utility Cleaning → Package, Facility Care → Building2
+- Custom Solutions (Projects): Water Treatment Projects → Droplets, Wastewater & Effluent Projects → Waves, HVAC Cleaning → SprayCan, Water Optimization → BadgeCheck, Industrial Application Support → ClipboardList
+
+With only 26 icons available for ~30 items plus everything else already using them elsewhere on the page (industries, why-suraxil features, etc.), some icons repeat across different categories — this is expected and intentional (icons are a decorative/thematic aid here, not unique identifiers); within any single category's own tile group, the icons were kept distinct from each other.
+
 ### 8.1 Water Treatment Chemicals for Critical Systems — `#water-treatment-chemicals`
 
 > Water quality directly affects equipment performance, operating efficiency and maintenance requirements. Suraxil provides treatment solutions across key industrial water systems.
@@ -401,12 +426,19 @@ Suraxil approaches specialized requirements through a structured process (second
 | 04 | **Implement** | Support implementation according to the requirement. |
 | 05 | **Optimize** | Review the application and refine the solution where required. |
 
-**Closing CTA block:**
-> Have a specific chemical requirement?
+**Closing CTA block (redesigned per reference image):**
+- **Eyebrow (uppercase, bold):** Have an Industrial Chemical Challenge?
+- **Heading:** Let's Find the Right Solution.
+- **Body:** Tell us about your application, system or requirement and our team can help identify the appropriate chemical solution.
+- **Buttons:** Request a Quote (filled) · Talk to an Expert (outline) — both link to `#contact`
 
-**Button:** Talk to Suraxil
+✅ **Live now.** Added directly above the Contact ("Get in touch") section, after FAQ — it didn't exist on the page before. Reuses the `steps-grid`/`step-card` numbered-step styling (same pattern as §5 Our Approach, same icon choices: Understand → Search, Analyze → ClipboardList, Recommend → BadgeCheck, Implement → Wrench, Optimize → CircleCheck) for the process steps, and a bordered callout box (inline-styled, same low-risk approach as §6/§7) for the closing CTA.
 
-✅ **Live now.** Added directly above the Contact ("Get in touch") section, after FAQ — it didn't exist on the page before. Reuses the `steps-grid`/`step-card` numbered-step styling (same pattern as §5 Our Approach, same icon choices: Understand → Search, Analyze → ClipboardList, Recommend → BadgeCheck, Implement → Wrench, Optimize → CircleCheck) and a bordered callout box (inline-styled, same low-risk approach as §6/§7) for the closing "Talk to Suraxil" CTA, which links to `#contact`.
+⚠️ **Colors adapted from the reference, not copied exactly.** The reference image showed green buttons; the closing CTA box was redesigned to match its copy and two-button layout, but the buttons use the site's own brand blue (`btn-primary` filled, `btn-ghost` outline — both already existing site-wide button classes, no new colors introduced) rather than green, since green doesn't appear anywhere else on the page and would clash with the rest of the brand. Flagging this as a deliberate adaptation, not an oversight — let me know if you actually want a green accent introduced.
+
+✅ **Highlighted further, per request, with a hover state.** The box previously had a plain gray border on a transparent background (blended into the page). Now: a light blue tint background (`#EEF2FC`), a blue border instead of gray, and on hover the background deepens to a slightly richer blue, the border darkens, and a soft blue shadow lifts the box — a smooth `.2s` transition on all three. This needed a real CSS class (`cta-highlight`, added to the shared stylesheet) rather than inline styles, since inline styles can't express a `:hover` state. The eyebrow text color was also switched from plain ink-black to the brand blue, to tie in with the new blue-tinted box.
+
+✅ **"Talk to an Expert" outline made visible, per request.** Once the box got its light-blue background, the button's default outline (the shared `.btn-ghost` class, a pale gray border) nearly disappeared against it — pale gray on pale blue has almost no contrast. Fixed by scoping a clearer style to just this box (`.cta-highlight .btn-ghost`): a blue border and blue text on a white fill, which inverts to solid blue on hover. Scoped to this box specifically rather than editing the shared `.btn-ghost` class itself, so the hero's secondary "Browse products" button (which also uses `.btn-ghost`, on a dark background where the original pale-gray outline works fine) is untouched.
 
 ---
 
@@ -431,19 +463,30 @@ About Suraxil · Projects · Contact
 
 **Button:** Request a Quote →
 
-⚠️ **This §9 footer design (Solutions/Industries/Company/CTA, 4 columns) has not been built** — the live footer is still the site's original 3-column structure (Products / Company / Get in touch), not this mockup layout. What *is* live now is documented below.
+✅ **Live now — footer rebuilt to this exact 4-column mockup layout**, replacing the site's original 3-column structure (Products / Company / Get in touch). Implementation notes:
 
-### Live now — header nav & footer "Company" column arrangement
+- **Brand column:** kept the actual logo image (rather than replacing it with plain "SURAXIL" text, since the mockup's text lockup would be a downgrade from a real logo graphic) and added the "Specialty Chemicals & Industrial Solutions" tagline heading above the blurb paragraph.
+- ✅ **Fixed:** the blurb under that tagline was still the older SEO-fixed sentence ("Suraxil provides specialty chemicals and industrial chemical solutions for water treatment...") instead of the mockup's actual text — flagged as a deliberate keep in the previous note, but the client asked for it to match the mockup, so it's now been corrected to: *"Chemical solutions for water treatment, wastewater treatment, industrial maintenance, housekeeping, fragrance and specialized applications."* This dropped the "industrial chemical solutions" keyword phrase this sentence had been carrying, so — to avoid re-opening the SEO gap from the earlier keyword audit — that phrase was re-homed into the "What We Do" section's **Custom Solutions** card blurb instead (now: *"Industrial chemical solutions developed around specific application requirements..."*, a one-word change). Re-ran the full 19-keyword audit after this change — everything still confirmed present, no regression.
+- **Solutions column** — now links each item to its actual matching section instead of every item pointing at the same `#products` anchor (which the old "Products" column did): Water Treatment → `#water-treatment-chemicals`, Wastewater Treatment → `#wastewater-treatment-chemicals`, Specialty Maintenance → `#industrial-maintenance-chemicals`, Housekeeping → `#housekeeping-cleaning-chemicals`, Fragrance Solutions → `#fragrance-solutions`, Projects → `#projects`, Custom Solutions → `#custom-chemical-solutions`.
+- **Industries column** — all 8 industries from §3, each linking to `#industries` (there's no per-industry sub-section to link to individually, same as the mockup's plain list).
+- **Company column** — About Suraxil, Projects, Contact, then the "Need a Chemical Solution?" line and a **"Request a Quote →"** link (styled as a bold blue arrow-link, `#contact`).
+- ⚠️ **"About Suraxil" reuses the same judgment call as the header nav's "About" link** (see below): there's no dedicated About section since "Who we are" was removed, so it points to `#why` (Why Suraxil) as the closest existing about-us content. Same caveat applies — flagging, not assuming this is final.
+- "Projects" here links to `#projects` (the "Beyond Products" block), consistent with the header nav's "Projects" link.
 
-Per request, both were reordered to match the actual live page's section order and to properly list all major sections (previously they were stale/mismatched — e.g. still listing the removed "About" section, or listing "Why Suraxil" before "Industries" after Industries had been moved above it).
+### Header nav & footer arrangement — history
 
-**Header nav** (desktop + mobile share the same list) — kept concise, top-level sections only:
-Home → What We Do → Industries → Why Suraxil → Products → FAQ → Contact
+**Header nav** (desktop + mobile share the same list), current final list per request:
+Solutions → Industries → Projects → About → FAQ → Contact, plus the header's separate highlighted button, now labeled **Request a Quote**.
 
-**Footer "Company" column** — expanded into a full site map of every major section (excluding Home and Products, since Products already has its own dedicated footer column):
-What We Do → Industries → Why Suraxil → Our Approach → The Suraxil Difference → How It Works → Experience → FAQ → Custom Solutions → Contact
+⚠️ **Updated per request — two rounds of changes, latest first:**
 
-Both lists now match the live page's actual top-to-bottom order. The "Products" and "Get in touch" footer columns were untouched.
+- **Nav rebuilt to exactly:** Solutions (`#what-we-do`) → Industries (`#industries`) → **Projects** (`#projects`, new) → **About** (`#why`, new) → FAQ (`#faq`) → Contact (`#contact`). Removed from the nav: "Why Suraxil" and "Products" (both sections are still on the page and still reachable — via the footer's Company column, the hero's "Browse products" button, and other in-page links — just no longer called out in the header nav itself).
+- **"Projects" links to `#projects`** — the anchor on the "Beyond Products. Solutions for Industrial Challenges." block inside §8's "Know More Details" sections (added a few turns ago), not a separate page.
+- **"About" has no real target — flagging this rather than guessing silently.** The "Who we are" section was removed from the page entirely per an earlier request, so there is no `#about` section anymore. Rather than recreate a broken link (the exact bug fixed when "Who we are" was removed), **I pointed "About" at `#why`** (the "Why Suraxil" section — "More Than a Chemical Supplier.") since it's the closest thing to an about-us narrative currently on the page. This is my judgment call, not a confirmed decision — if you want a real About section back, or want "About" pointed somewhere else, let me know.
+- The header's highlighted CTA button (next to the nav links, desktop and mobile) was renamed from **"Contact Us"** to **"Request a Quote"** — this makes it a nav item in spirit (it's the 7th item in your list) while keeping the site's existing two-tier header pattern (plain text links + one highlighted button), and it now matches the "Request a Quote" wording already used in the hero and footer CTAs. Still links to `#contact`.
+- Previously (last turn): "Home" was removed from the nav list (the brand logo still links to `#home`), and "What We Do" was renamed to "Solutions" — both carried forward unchanged in this round.
+
+**Footer "Company" column (superseded):** at one point this held a full 10-item site map (What We Do → Industries → Why Suraxil → Our Approach → The Suraxil Difference → How It Works → Experience → FAQ → Custom Solutions → Contact). That version no longer exists — the whole footer was rebuilt to the mockup's 4-column layout above, which has a much shorter 3-item Company column (About Suraxil, Projects, Contact) by design. Keeping this note for history only; it does not describe the current footer.
 
 ---
 
