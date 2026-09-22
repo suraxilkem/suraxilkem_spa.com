@@ -3,8 +3,13 @@ import { siteConfig } from "@/config/site";
 /**
  * Organization + WebSite JSON-LD. Only fields backed by real, known data are
  * included (legal name, url, logo, email, phone, registered office) — no
- * invented founding date, ratings or reviews. Extend this only when the
- * client supplies further details.
+ * invented founding date, ratings, reviews or geo-coordinates. Extend this
+ * only when the client supplies further details.
+ *
+ * "LocalBusiness" is included alongside "Organization" (a valid multi-type
+ * JSON-LD array) since there's now a real registered office address --
+ * this is what makes the business eligible for local/map-pack search
+ * relevance, not just generic entity recognition.
  */
 export function OrganizationJsonLd() {
   const { address } = siteConfig.contact;
@@ -12,7 +17,7 @@ export function OrganizationJsonLd() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
+        "@type": ["Organization", "LocalBusiness"],
         "@id": `${siteConfig.url}/#organization`,
         name: siteConfig.legalName,
         alternateName: siteConfig.name,

@@ -5,7 +5,7 @@ export const siteConfig = {
   description:
     "Suraxil offers specialty chemicals, water treatment, wastewater treatment, industrial cleaning and custom chemical solutions for businesses across India.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://www.suraxil.com",
-  legalName: "Suraxil India Pvt Ltd",
+  legalName: "SuraxilKem Pvt Ltd",
   contact: {
     email: "info@suraxil.com",
     location: "Ekkatuthangal, Chennai",

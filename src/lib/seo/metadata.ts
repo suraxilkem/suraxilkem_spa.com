@@ -42,6 +42,7 @@ export function buildMetadata({ title, description, path }: PageSeo): Metadata {
       title,
       description,
       url: canonical,
+      locale: "en_IN",
     },
     twitter: {
       card: "summary_large_image",
