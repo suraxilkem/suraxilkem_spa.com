@@ -18,7 +18,7 @@ export function WhatWeDo() {
         {solutions.map((solution, index) => {
           const Icon = solution.icon;
           const card = (
-            <div className="overview-card solution-card">
+            <div className="solution-card">
               <span className="overview-icon" style={{ color: accentColors[solution.accent] }}>
                 <Icon size={22} />
               </span>

@@ -24,6 +24,7 @@ export function buildMetadata({ title, description, path }: PageSeo): Metadata {
     metadataBase: new URL(siteConfig.url),
     title,
     description,
+    keywords: [...siteConfig.keywords.primary, ...siteConfig.keywords.secondary],
     alternates: {
       canonical,
     },

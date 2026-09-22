@@ -1141,16 +1141,25 @@ img {
   line-height: 1.65;
 }
 
-/* solutions (What We Do) alternating rows */
+/* solutions (What We Do) alternating rows -- each row is ONE seamless card;
+   text and photo sit flush against each other, no gap between them. */
 .solution-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 0;
   align-items: stretch;
   margin-bottom: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
 }
 .solution-card {
-  padding: 24px 22px;
+  padding: 32px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
 }
 .solution-card .overview-title {
   font-size: 21px;
@@ -1158,10 +1167,12 @@ img {
 .solution-card .overview-blurb {
   font-size: 14.5px;
 }
+.solution-card .overview-link {
+  margin-top: 4px;
+  padding-top: 0;
+}
 .solution-photo {
-  border-radius: 16px;
-  min-height: 160px;
-  overflow: hidden;
+  min-height: 220px;
 }
 .solution-photo img {
   width: 100%;
@@ -1172,6 +1183,9 @@ img {
 @media (max-width: 760px) {
   .solution-row {
     grid-template-columns: 1fr;
+  }
+  .solution-photo {
+    min-height: 200px;
   }
 }
 

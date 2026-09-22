@@ -39,11 +39,7 @@ export function Contact() {
             <Phone size={20} />
             <div>
               <p className="contact-card-title">Phone</p>
-              <p>
-                {contact.phone}
-                <br />
-                {contact.phoneAlt}
-              </p>
+              <p>{contact.phone}</p>
             </div>
           </div>
           <div className="contact-card">
