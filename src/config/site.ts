@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Suraxil",
+  name: "SuraxilKem",
   tagline: "Specialty Chemicals & Industrial Solutions",
   title: "Specialty Chemicals & Water Treatment | Suraxil",
   description:
