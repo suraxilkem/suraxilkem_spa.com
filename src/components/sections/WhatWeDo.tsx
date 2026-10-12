@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { solutions, accentColors } from "@/data/solutions";
 import { Reveal } from "@/components/ui/Reveal";
+import { ServiceJsonLd } from "@/components/seo/ServiceJsonLd";
 
 export function WhatWeDo() {
   return (
     <section id="what-we-do" className="section">
+      <ServiceJsonLd />
       <div className="shell">
         <Reveal className="section-head">
           <p className="section-label">What We Do</p>
